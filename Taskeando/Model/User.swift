@@ -1,5 +1,5 @@
 //
-//  UserDTO.swift
+//  User.swift
 //  Taskeando
 //
 //  Created by Carlos Xavier Carvajal Villegas on 22/5/25.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct UserDTO: Codable {
+struct User: Codable {
     let email: String
     let password: String
     let name: String

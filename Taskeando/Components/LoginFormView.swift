@@ -8,11 +8,14 @@
 import SwiftUI
 
 struct LoginForm: View {
-    @State private var email = ""
-    @State private var password = ""
-    @State private var isLoading = false
+    @Environment(TaskeandoVM.self) var vm
+    
+    @State private var showPassword = false
+    
     @FocusState private var focusField: Field?
     
+    @Binding var email: String
+    @Binding var password: String
     @Binding var alertMessage: String
     @Binding var showAlert: Bool
     @Binding var showForgotPassword: Bool
@@ -30,17 +33,18 @@ struct LoginForm: View {
     private func loginAction() {
         guard isLoginButtonEnabled else { return }
         
-        isLoading = true
+        vm.isLoading = true
         
         Task {
-            // Simulamos un delay para la autenticación
             try? await Task.sleep(for: .seconds(1.5))
+            vm.isLoading = false
             
-            isLoading = false
-            
-            // Aquí iría tu lógica real de autenticación
-            if email.lowercased() == "demo@example.com" && password == "password" {
+            // Aquí iría lógica real de autenticación
+            if !email.lowercased().isEmpty && !password.isEmpty {
                 onLogin()
+                email = ""
+                password = ""
+                focusField = .email
             } else {
                 alertMessage = "Credenciales incorrectas. Por favor, inténtalo de nuevo."
                 showAlert = true
@@ -51,61 +55,26 @@ struct LoginForm: View {
 
     var body: some View {
         VStack(spacing: 25) {
-            VStack(alignment: .leading, spacing: 8) {
-                HStack {
-                    Text("Email")
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                    Spacer()
-                }
-                
-                HStack {
-                    Image(systemName: "envelope.fill")
-                        .foregroundStyle(.secondary)
-                    
-                    TextField("usuario@ejemplo.com", text: $email)
-                        .textContentType(.emailAddress)
-                        .keyboardType(.emailAddress)
-                        .textInputAutocapitalization(.never)
-                        .autocorrectionDisabled()
-                        .focused($focusField, equals: .email)
-                        .submitLabel(.next)
-                        .onSubmit {
-                            focusField = .password
-                        }
-                }
-                .padding()
-                .background(
-                    RoundedRectangle(cornerRadius: 12)
-                        .fill(Color(.systemGray6))
-                )
-            }
+            FormTextField(
+                title: "Email",
+                placeholder: "usuario@ejemplo.com",
+                icon: "envelope.fill",
+                text: $email,
+                contentType: .emailAddress,
+                keyboardType: .emailAddress,
+                capitalization: .never
+            )
+            .focused($focusField, equals: .email)
             
             VStack(alignment: .leading, spacing: 8) {
-                HStack {
-                    Text("Contraseña")
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                    Spacer()
-                }
-                
-                HStack {
-                    Image(systemName: "lock.fill")
-                        .foregroundStyle(.secondary)
-                    
-                    SecureField("********", text: $password)
-                        .textContentType(.password)
-                        .focused($focusField, equals: .password)
-                        .submitLabel(.go)
-                        .onSubmit {
-                            loginAction()
-                        }
-                }
-                .padding()
-                .background(
-                    RoundedRectangle(cornerRadius: 12)
-                        .fill(Color(.systemGray6))
+                PasswordField(
+                    title: "Contraseña",
+                    placeholder: "********",
+                    text: $password,
+                    showPassword: $showPassword,
+                    isNewPassword: false
                 )
+                .focused($focusField, equals: .password)
                 
                 Button("¿Olvidaste tu contraseña?") {
                     showForgotPassword = true
@@ -117,7 +86,7 @@ struct LoginForm: View {
             LoadingButton(
                 title: "Iniciar Sesión",
                 action: loginAction,
-                isLoading: isLoading,
+                isLoading: vm.isLoading,
                 isEnabled: isLoginButtonEnabled,
                 fontWeight: .semibold,
                 cornerRadius: 15,
@@ -128,11 +97,16 @@ struct LoginForm: View {
     }
 }
 #Preview {
+    @Previewable @State var email: String = ""
+    @Previewable @State var password: String = ""
     @Previewable @State var alertMessage: String = ""
     @Previewable @State var showAlert: Bool = false
     @Previewable @State var showForgotPassword: Bool = false
-    LoginForm(alertMessage: $alertMessage,
+    LoginForm(email:$email,
+              password: $password,
+              alertMessage: $alertMessage,
               showAlert: $showAlert,
               showForgotPassword: $showForgotPassword,
-              onLogin: {})
+              onLogin: {}
+    )
 }

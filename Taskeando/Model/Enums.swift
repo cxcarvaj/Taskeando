@@ -5,7 +5,7 @@
 //  Created by Carlos Xavier Carvajal Villegas on 23/5/25.
 //
 
-import Foundation
+import SwiftUI
 
 enum UserType: String, Codable {
     case admin, user, none
@@ -33,4 +33,24 @@ enum ProjectType: String, Codable {
     case research
     case support
     case testing
+}
+
+enum PasswordStrength: String {
+    case weak, medium, strong
+    
+    var color: Color {
+        switch self {
+            case .weak: return .red
+            case .medium: return .yellow
+            case .strong: return .green
+        }
+    }
+    
+    var description: String {
+        switch self {
+            case .weak: return "Débil"
+            case .medium: return "Media"
+            case .strong: return "Fuerte"
+        }
+    }
 }

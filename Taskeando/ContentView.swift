@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var vm = TaskeandoVM()
+    @Environment(TaskeandoVM.self) var vm
+    @Environment(\.colorScheme) var colorScheme
+    @Environment(\.accessibilityReduceMotion) var reduceMotion: Bool
+    
     @State private var selectedTab: Int = 0
     @State private var showAddProject: Bool = false
-    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         NavigationStack {
@@ -73,20 +75,15 @@ struct ContentView: View {
                     .presentationDragIndicator(.visible)
             }
         }
+        .backgroundOverlay(vm.isUserLogged)
         .overlay {
-            Rectangle()
-                .fill(.ultraThinMaterial)
-                .ignoresSafeArea()
-                .opacity(vm.isUserLogged ? 0 : 1)
-        }
-        .overlay {
-            LoginView(onLogin: {
+            LoginView {
                 withAnimation(.spring(duration: 0.7, bounce: 0.4)) {
                     vm.isUserLogged = true
                 }
-            })
+            }
             .opacity(vm.isUserLogged ? 0 : 1)
-            .offset(y: vm.isUserLogged ? 500 : 0)
+            .offset(y: vm.isUserLogged ? reduceMotion ? 0 : 500 : 0)
         }
         .animation(.spring(duration: 0.5, bounce: 0.3), value: vm.isUserLogged)
     }
@@ -102,5 +99,6 @@ struct ProjectDetailView: View {
 }
 
 #Preview {
-    ContentView(vm: TaskeandoVM(networkRepository: RepositoryTest()))
+    ContentView()
+        .environment(TaskeandoVM(networkRepository: RepositoryTest()))
 }

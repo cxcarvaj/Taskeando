@@ -9,9 +9,15 @@ import SwiftUI
 
 @main
 struct TaskeandoApp: App {
+    @State private var vm = TaskeandoVM()
+
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(vm)
+                .onOpenURL { url in
+                    print(url)
+                }
         }
     }
 }

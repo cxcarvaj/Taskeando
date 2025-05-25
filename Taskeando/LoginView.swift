@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct LoginView: View {
+    @State private var email = ""
+    @State private var password = ""
     @State private var showForgotPassword = false
     @State private var showSignUp = false
     @State private var showAlert = false
@@ -38,7 +40,9 @@ struct LoginView: View {
             .padding(.vertical)
             
             // Formulario de Login
-            LoginForm(alertMessage: $alertMessage,
+            LoginForm(email: $email,
+                      password: $password,
+                      alertMessage: $alertMessage,
                       showAlert: $showAlert,
                       showForgotPassword: $showForgotPassword) {
                 onLogin()
@@ -95,9 +99,7 @@ struct LoginView: View {
         .sheet(isPresented: $showSignUp) {
             // Vista de registro
             VStack {
-                Text("Crear nueva cuenta")
-                    .font(.title)
-                    .bold()
+                SignUpView(email: $email, password: $password)
             }
             .presentationDetents([.large])
             .presentationDragIndicator(.visible)

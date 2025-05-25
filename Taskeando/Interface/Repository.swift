@@ -28,7 +28,7 @@ struct Repository: NetworkRepository {
 
 protocol NetworkRepository: NetworkInteractor, Sendable {
     var APIKEY: String { get }
-    func createUser(user: UserDTO) async throws(NetworkError)
+    func createUser(user: User) async throws(NetworkError)
     func loginUser(user: String, pass: String) async throws(NetworkError)
     func loginUserJWT(user: String, pass: String) async throws(NetworkError)
     func createProject(project: Project) async throws(NetworkError)
@@ -42,7 +42,7 @@ extension NetworkRepository {
         return String(data: Data(OBF), encoding: .utf8) ?? ""
     }
     
-    func createUser(user: UserDTO) async throws(NetworkError) {
+    func createUser(user: User) async throws(NetworkError) {
         let request: URLRequest = await .post(url: .createUser,
                                               body: user,
                                               authMethod: .apiKey(key: APIKEY,
