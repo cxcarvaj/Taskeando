@@ -28,3 +28,7 @@ extension TaskeandoVM {
         password == confirmPassword
     }
 }
+
+extension Notification.Name {
+    static let userValidated = Notification.Name("userValidated")
+}

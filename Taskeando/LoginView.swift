@@ -9,15 +9,15 @@
 import SwiftUI
 
 struct LoginView: View {
+    @Environment(TaskeandoVM.self) var vm
+
     @State private var email = ""
     @State private var password = ""
     @State private var showForgotPassword = false
     @State private var showSignUp = false
     @State private var showAlert = false
     @State private var alertMessage = ""
-    
-    var onLogin: () -> Void
-    
+        
     var body: some View {
         VStack {
             // Header con logo
@@ -45,7 +45,8 @@ struct LoginView: View {
                       alertMessage: $alertMessage,
                       showAlert: $showAlert,
                       showForgotPassword: $showForgotPassword) {
-                onLogin()
+//                await vm.loginUser(user: email, pass: password)
+                await vm.loginUserJWT(user: email, pass: password)
             }
             
             // Opciones alternativas
@@ -126,6 +127,6 @@ struct LoginView: View {
 #Preview {
     ZStack {
         Color.gray.opacity(0.2).ignoresSafeArea()
-        LoginView(onLogin: {})
+        LoginView()
     }
 }

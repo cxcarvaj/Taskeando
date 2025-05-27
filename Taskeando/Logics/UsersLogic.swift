@@ -19,4 +19,16 @@ final class UsersLogic {
     func createUser(_ user: User) async throws {
         try await networkRepository.createUser(user: user)
     }
+    
+    func validateUser(token: String) async throws {
+        try await networkRepository.validateUser(token: token)
+    }
+    
+    func loginUser(user: String, pass: String) async throws {
+        try await networkRepository.loginUser(user: user, pass: pass)
+    }
+    
+    func loginUserJWT(user: String, pass: String) async throws {
+        try await networkRepository.loginUserJWT(user: user, pass: pass)
+    }
 }

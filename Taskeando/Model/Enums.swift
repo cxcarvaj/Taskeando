@@ -54,3 +54,9 @@ enum PasswordStrength: String {
         }
     }
 }
+
+
+struct EmailValidation: Codable {
+    let email: String
+    let token: String
+}

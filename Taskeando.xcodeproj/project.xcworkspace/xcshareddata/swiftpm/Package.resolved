@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "git@github.com:cxcarvaj/SMP25Kit.git",
       "state" : {
-        "revision" : "47414a1dc10d9d0031e7aa567603d650aab43a09",
-        "version" : "0.1.7"
+        "revision" : "391ddc0539e762901b0b5c96e611ee70d981f09c",
+        "version" : "0.1.8"
       }
     }
   ],

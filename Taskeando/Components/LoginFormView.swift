@@ -24,7 +24,7 @@ struct LoginForm: View {
         case email, password
     }
     
-    var onLogin: () -> Void
+    var onLogin: () async -> Void
     
     private var isLoginButtonEnabled: Bool {
         !email.isEmpty && !password.isEmpty && email.contains("@")
@@ -41,7 +41,7 @@ struct LoginForm: View {
             
             // Aquí iría lógica real de autenticación
             if !email.lowercased().isEmpty && !password.isEmpty {
-                onLogin()
+                await onLogin()
                 email = ""
                 password = ""
                 focusField = .email

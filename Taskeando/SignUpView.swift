@@ -9,9 +9,9 @@ import SwiftUI
 
 struct SignUpView: View {
     // MARK: - Properties
+    @Environment(TaskeandoVM.self) var vm
     @Environment(\.dismiss) private var dismiss
     
-    @State private var vm = TaskeandoVM()
     @State private var passwordVM = PasswordViewModel()
     @State private var fullName = ""
     @State private var confirmPassword = ""
@@ -29,6 +29,7 @@ struct SignUpView: View {
     }
     // MARK: - Body
     var body: some View {
+        @Bindable var vm = vm
         ScrollView {
             VStack(spacing: 25) {
                 // Header

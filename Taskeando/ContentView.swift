@@ -14,8 +14,12 @@ struct ContentView: View {
     
     @State private var selectedTab: Int = 0
     @State private var showAddProject: Bool = false
+    
+    private let registration = NotificationCenter.default
+        .publisher(for: .userValidated)
 
     var body: some View {
+        @Bindable var vm = vm
         NavigationStack {
             VStack(spacing: 0) {
                 if vm.projectsLogic.projects.count > 0 {
@@ -77,15 +81,19 @@ struct ContentView: View {
         }
         .backgroundOverlay(vm.isUserLogged)
         .overlay {
-            LoginView {
-                withAnimation(.spring(duration: 0.7, bounce: 0.4)) {
-                    vm.isUserLogged = true
-                }
-            }
+            LoginView()
             .opacity(vm.isUserLogged ? 0 : 1)
             .offset(y: vm.isUserLogged ? reduceMotion ? 0 : 500 : 0)
         }
         .animation(.spring(duration: 0.5, bounce: 0.3), value: vm.isUserLogged)
+        .onReceive(registration) { _ in
+            vm.alertMessage = "User validated. You can now login to your account."
+            vm.showAlert.toggle()
+        }
+        .alert("Taskeando",
+               isPresented: $vm.showAlert) {} message: {
+            Text(vm.alertMessage)
+        }
     }
 }
 

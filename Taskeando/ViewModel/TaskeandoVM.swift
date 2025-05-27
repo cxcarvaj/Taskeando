@@ -24,7 +24,8 @@ final class TaskeandoVM {
         self.usersLogic = UsersLogic(networkRepository: networkRepository)
         Task {
             try await Task.sleep(for: .seconds(0.5))
-            self.isUserLogged = SecKeyStore.shared.readValue(withLabel: GlobalIDs.tokenID.rawValue) != nil
+//            self.isUserLogged = SecKeyStore.shared.readValue(withLabel: GlobalIDs.tokenID.rawValue) != nil
+            self.isUserLogged = SecKeyStore.shared.readValue(withLabel: GlobalIDs.tokedJWT.rawValue) != nil
         }
     }
     
@@ -37,6 +38,37 @@ final class TaskeandoVM {
             isLoading.toggle()
             alertMessage = "Error al crear la cuenta: \(error.localizedDescription)"
             showAlert = true
+        }
+    }
+    
+    func validateUser(token: String) async {
+        do {
+            try await usersLogic.validateUser(token: token)
+        } catch {
+            alertMessage = "Error al validar al usuario: \(error.localizedDescription)"
+            showAlert = true
+        }
+    }
+    
+    func loginUser(user: String, pass: String) async {
+        do {
+            try await usersLogic.loginUser(user: user, pass: pass)
+            self.isUserLogged = SecKeyStore.shared.readValue(withLabel: GlobalIDs.tokenID.rawValue) != nil
+            await projectsLogic.getProjects()
+        } catch {
+            alertMessage = error.localizedDescription
+            showAlert.toggle()
+        }
+    }
+    
+    func loginUserJWT(user: String, pass: String) async {
+        do {
+            try await usersLogic.loginUserJWT(user: user, pass: pass)
+            self.isUserLogged = SecKeyStore.shared.readValue(withLabel: GlobalIDs.tokedJWT.rawValue) != nil
+            await projectsLogic.getProjects()
+        } catch {
+            alertMessage = error.localizedDescription
+            showAlert.toggle()
         }
     }
 }

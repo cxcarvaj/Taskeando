@@ -29,8 +29,9 @@ struct Repository: NetworkRepository {
 protocol NetworkRepository: NetworkInteractor, Sendable {
     var APIKEY: String { get }
     func createUser(user: User) async throws(NetworkError)
+    func validateUser(token: String) async throws(NetworkError)
     func loginUser(user: String, pass: String) async throws(NetworkError)
-    func loginUserJWT(user: String, pass: String) async throws(NetworkError)
+    func loginUserJWT(user: String, pass: String) async throws
     func createProject(project: Project) async throws(NetworkError)
     func getProjects() async throws(NetworkError) -> [Project]
     func getProject(id: UUID?) async throws(NetworkError) -> Project
@@ -48,36 +49,60 @@ extension NetworkRepository {
                                               authMethod: .apiKey(key: APIKEY,
                                                                   headerName: "X-API-Key"))
         try await getStatus(request, status: 201)
+        SecKeyStore.shared.storeValue(Data(user.email.utf8), withLabel: "validateEmailUser")
+    }
+    
+    func validateUser(token: String) async throws(NetworkError) {
+        guard let userEmailData = SecKeyStore.shared.readValue(withLabel: "validateEmailUser"),
+              let userEmail = String(data: userEmailData, encoding: .utf8) else {
+            throw NetworkError.security("No se ha podido validar el email de usuario pendiente.")
+        }
+        var request: URLRequest = await .post(url: .validateUser, body: EmailValidation(email: userEmail, token: token))
+        request.setValue(APIKEY, forHTTPHeaderField: "X-API-Key")
+        try await getStatus(request, status: 202)
+        NotificationCenter.default.post(name: .userValidated, object: nil)
+        SecKeyStore.shared.deleteValue(withLabel: "validateEmail")
     }
     
     func loginUser(user: String, pass: String) async throws(NetworkError) {
         let request: URLRequest = await .get(
             .loginUser,
-//            authMethod: .basic(username: user, password: pass)
+            authMethod: .basic(username: user, password: pass)
         )
         let response = try await getJSON(request, type: Token.self) //getJSON? Es un buen nombre?
         await AuthMiddlewareManager.shared.saveToken(response.token)
     }
     
-    func loginUserJWT(user: String, pass: String) async throws(NetworkError) {
+    func loginUserJWT(user: String, pass: String) async throws {
         let request: URLRequest = await .get(
             .loginUserJWT,
-//            authMethod: .basic(username: user, password: pass)
+            authMethod: .basic(username: user, password: pass)
         )
-        let response = try await getJSON(request, type: Token.self) //getJSON? Es un buen nombre?
-        await AuthMiddlewareManager.shared.saveToken(response.token)
+        let response = try await getJSON(request, type: Token.self)
+        let jwt = response.token
+
+        // De dónde sacamos la Key? es la key obfuscada (el hmac) que es mi secret que forma parte del JWT. Es el mismo hmac del API de vapor
+        let key: [UInt8] = [0x3B+0x2F,0x89-0x1A,0x12+0x50,0xCB-0x58,0x74-0x21,0xBA-0x46,0x55+0x10,0x22+0x54,0xC6-0x61]
+        let _ = try AuthCredentialManager().validateAndStoreJWT(
+            jwt: jwt,
+            issuer: "TaskeandoAPI",
+            key: Data(key)
+        )
     }
     
     func createProject(project: Project) async throws(NetworkError) {
-        try await getStatus(.post(url: .project, body: project), status: 202)
+//        try await getStatus(.post(url: .project, body: project), status: 202)
+        try await getStatus(.post(url: .projectJWT, body: project, authMethod: .bearer(tokenType: .tokedJWT)), status: 202)
     }
 
     func getProjects() async throws(NetworkError) -> [Project] {
-        try await getJSON(.get(.project), type: [Project].self)
+//        try await getJSON(.get(.project), type: [Project].self)
+        try await getJSON(.get(.projectJWT, authMethod: .bearer(tokenType: .tokedJWT)), type: [Project].self)
     }
     
     func getProject(id: UUID?) async throws(NetworkError) -> Project {
-        try await getJSON(.get(.getProject(id: id)), type: Project.self)
+//        try await getJSON(.get(.getProject(id: id)), type: Project.self)
+        try await getJSON(.get(.getProjectJWT(id: id), authMethod: .bearer(tokenType: .tokedJWT)), type: Project.self)
     }
     
 }

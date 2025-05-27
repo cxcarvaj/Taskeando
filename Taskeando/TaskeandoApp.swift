@@ -17,6 +17,16 @@ struct TaskeandoApp: App {
                 .environment(vm)
                 .onOpenURL { url in
                     print(url)
+                    guard url.path == "/validateEmail",
+                          let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
+                          let token = components.queryItems?.first(where: { $0.name == "token" })?.value
+                    else {
+                        return
+                    }
+                    
+                    Task {
+                        await vm.validateUser(token: token)
+                    }
                 }
         }
     }

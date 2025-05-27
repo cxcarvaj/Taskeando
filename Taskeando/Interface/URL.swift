@@ -14,9 +14,14 @@ extension URL {
     static let createUser = apiURL.appendingPathComponent("createUser")
     static let loginUser = apiURL.appendingPathComponent("loginUser")
     static let loginUserJWT = apiURL.appendingPathComponent("loginUserJWT")
+    static let validateUser = apiURL.appendingPathComponent("validateUser")
     static let project = apiURL.appendingPathComponent("project")
     static func getProject(id: UUID?) -> URL {
         project.appending(path: id?.uuidString ?? "")
+    }
+    static let projectJWT = apiURL.appendingPathComponent("projectJWT")
+    static func getProjectJWT(id: UUID?) -> URL {
+        projectJWT.appending(path: id?.uuidString ?? "")
     }
 }
 
