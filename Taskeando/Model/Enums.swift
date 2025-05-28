@@ -60,3 +60,8 @@ struct EmailValidation: Codable {
     let email: String
     let token: String
 }
+
+struct SIWABody: Codable {
+    let name: String?
+    let lastName: String?
+}

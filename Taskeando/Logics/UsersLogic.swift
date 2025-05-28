@@ -31,4 +31,12 @@ final class UsersLogic {
     func loginUserJWT(user: String, pass: String) async throws {
         try await networkRepository.loginUserJWT(user: user, pass: pass)
     }
+    
+    func loginWithSIWA(tokenData: Data, siwaBody: SIWABody) async throws {
+        try await networkRepository.loginWithSIWA(tokenData: tokenData, siwaBody: siwaBody)
+    }
+    
+    func refreshJWT() async throws {
+        try await networkRepository.refreshJWT()
+    }
 }

@@ -7,6 +7,7 @@
 
 
 import SwiftUI
+import AuthenticationServices
 
 struct LoginView: View {
     @Environment(TaskeandoVM.self) var vm
@@ -70,8 +71,13 @@ struct LoginView: View {
                     .foregroundStyle(.secondary)
                 
                 HStack(spacing: 20) {
-                    socialLoginButton(image: "apple.logo", color: .black)
-                    socialLoginButton(image: "g.circle.fill", color: .red)
+                    SignInWithAppleButton(.signIn) { request in
+                        request.requestedScopes = [.email, .fullName]
+                    } onCompletion: { result in
+                        Task { await vm.loginWithSIWA(result: result) }
+                    }
+                    .frame(width: 250, height: 50)
+//                    socialLoginButton(image: "g.circle.fill", color: .red)
                 }
             }
             .padding(.top, 25)
@@ -128,5 +134,6 @@ struct LoginView: View {
     ZStack {
         Color.gray.opacity(0.2).ignoresSafeArea()
         LoginView()
+            .environment(TaskeandoVM(networkRepository: RepositoryTest()))
     }
 }

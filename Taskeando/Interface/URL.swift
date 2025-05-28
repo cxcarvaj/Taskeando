@@ -12,10 +12,12 @@ let apiURL = host.appendingPathComponent("api")
 
 extension URL {
     static let createUser = apiURL.appendingPathComponent("createUser")
+    static let loginSIWA = apiURL.appendingPathComponent("loginSIWA")
     static let loginUser = apiURL.appendingPathComponent("loginUser")
     static let loginUserJWT = apiURL.appendingPathComponent("loginUserJWT")
     static let validateUser = apiURL.appendingPathComponent("validateUser")
     static let project = apiURL.appendingPathComponent("project")
+    static let refreshJWT = apiURL.appendingPathComponent("refreshJWT")
     static func getProject(id: UUID?) -> URL {
         project.appending(path: id?.uuidString ?? "")
     }

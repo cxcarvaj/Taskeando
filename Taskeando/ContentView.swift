@@ -63,7 +63,7 @@ struct ContentView: View {
                         
                         Button("Cerrar Sesión", systemImage: "rectangle.portrait.and.arrow.right") {
                             withAnimation {
-                                vm.isUserLogged = false
+                                vm.logout()
                             }
                         }
                     } label: {

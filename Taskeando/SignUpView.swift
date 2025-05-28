@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AuthenticationServices
 
 struct SignUpView: View {
     // MARK: - Properties
@@ -23,6 +24,8 @@ struct SignUpView: View {
     @Binding var password: String
     
     @FocusState private var focusField: Field?
+    @State private var showAppleError: Bool = false
+    @State private var appleErrorMessage: String = ""
     
     enum Field: Hashable {
         case fullName, email, password, confirmPassword
@@ -31,11 +34,50 @@ struct SignUpView: View {
     var body: some View {
         @Bindable var vm = vm
         ScrollView {
-            VStack(spacing: 25) {
+            VStack(spacing: 30) {
                 // Header
                 headerView
                 
-                // Formulario
+                // Apple Sign In destacado
+                VStack(spacing: 12) {
+                    SignInWithAppleButton(.signUp) { request in
+                        request.requestedScopes = [.email, .fullName]
+                    } onCompletion: { result in
+                        Task {
+                            await vm.loginWithSIWA(result: result)
+                        }
+                    }
+                    .signInWithAppleButtonStyle(.black)
+                    .frame(maxWidth: .infinity, minHeight: 48, maxHeight: 52)
+                    .cornerRadius(12)
+                    .padding(.horizontal, 8)
+                    .accessibilityIdentifier("SignInWithAppleButton")
+                    
+                    Text("Regístrate con Apple para mayor rapidez y seguridad.")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                        .multilineTextAlignment(.center)
+                }
+                .padding(.bottom, 6)
+                .background(
+                    RoundedRectangle(cornerRadius: 14)
+                        .stroke(Color(.separator), lineWidth: 0.5)
+                        .background(Color(.systemBackground).opacity(0.7))
+                )
+                .padding(.horizontal)
+                .padding(.top, 4)
+                
+                HStack {
+                    Divider().frame(height: 1)
+                    Text("o crea una cuenta manualmente")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                    Divider().frame(height: 1)
+                }
+                .padding(.horizontal)
+                .padding(.vertical, 2)
+                
+                // Formulario manual
                 VStack(spacing: 20) {
                     FormTextField(
                         title: "Nombre completo",
@@ -64,7 +106,7 @@ struct SignUpView: View {
                         placeholder: "Mínimo 8 caracteres",
                         text: $password,
                         showPassword: $showPassword,
-                        isNewPassword: true,
+                        isNewPassword: true
                     )
                     .focused($focusField, equals: .password)
                     
@@ -79,10 +121,12 @@ struct SignUpView: View {
                     .focused($focusField, equals: .confirmPassword)
                     
                     PasswordStrengthIndicator(passwordStrength: $passwordVM.passwordStrength)
+                        .animation(.easeInOut, value: password)
                 }
                 .padding(.horizontal)
+                .padding(.top, 4)
                 
-                // Botón de registro
+                // Botón de registro manual
                 LoadingButton(
                     title: "Crear Cuenta",
                     action: signUpAction,
@@ -90,8 +134,20 @@ struct SignUpView: View {
                     isEnabled: isSignUpButtonEnabled,
                     icon: "person.badge.plus",
                     cornerRadius: 15,
-                    primaryGradient: [.blue, .indigo],
+                    primaryGradient: [.blue, .indigo]
                 )
+                .padding(.horizontal)
+                .padding(.top, 2)
+                
+                // Errores de Apple
+                if showAppleError {
+                    Text(appleErrorMessage)
+                        .font(.footnote)
+                        .foregroundStyle(.red)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal)
+                        .transition(.opacity)
+                }
                 
                 // Política de privacidad
                 privacyText
@@ -99,7 +155,8 @@ struct SignUpView: View {
                 // Volver al login
                 backToLoginButton
             }
-            .padding()
+            .padding(.top)
+            .padding(.bottom, 30)
         }
         .alert("Aviso", isPresented: $vm.showAlert) {
             Button("OK") {}
@@ -188,7 +245,6 @@ struct SignUpView: View {
     // MARK: - Functions
     
     private func signUpAction() {
-        // Ocultar el teclado (método moderno para SwiftUI)
         hideKeyboard()
         Task {
             await vm.createUser(
@@ -203,7 +259,6 @@ struct SignUpView: View {
     
     // Método moderno para ocultar el teclado en SwiftUI
     private func hideKeyboard() {
-        // Este método es preferible en SwiftUI moderno
         focusField = nil
     }
 }
