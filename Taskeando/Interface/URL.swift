@@ -25,6 +25,10 @@ extension URL {
     static func getProjectJWT(id: UUID?) -> URL {
         projectJWT.appending(path: id?.uuidString ?? "")
     }
+    
+    static let sendMetrics = apiURL.appendingPathComponent("metrics")
+
+
 }
 
 extension URLQueryItem {

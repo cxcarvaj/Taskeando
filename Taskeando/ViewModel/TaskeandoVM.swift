@@ -24,6 +24,7 @@ final class TaskeandoVM {
     
     var isUserLogged = true
     var isLoading = false
+    var isLoadingProjects = false
     var showAlert = false
     var alertMessage = ""
     
@@ -95,7 +96,7 @@ final class TaskeandoVM {
         do {
             try await usersLogic.loginUser(user: user, pass: pass)
             self.isUserLogged = SecKeyStore.shared.readValue(withLabel: GlobalIDs.tokenID.rawValue) != nil
-            await projectsLogic.getProjects()
+            try await projectsLogic.getProjects()
         } catch {
             alertMessage = error.localizedDescription
             showAlert.toggle()
@@ -106,7 +107,7 @@ final class TaskeandoVM {
         do {
             try await usersLogic.loginUserJWT(user: user, pass: pass)
             self.isUserLogged = SecKeyStore.shared.readValue(withLabel: GlobalIDs.tokenJWT.rawValue) != nil
-            await projectsLogic.getProjects()
+            try await projectsLogic.getProjects()
         } catch {
             alertMessage = error.localizedDescription
             showAlert.toggle()
@@ -138,5 +139,20 @@ final class TaskeandoVM {
     func logout() {
         Task { await AuthMiddlewareManager.shared.clearAllCredentials() }
         isUserLogged = false
+    }
+    
+    func addProject(_ project: Project) async throws {
+         do {
+             try await projectsLogic.addProject(project)
+         } catch {
+             alertMessage = error.localizedDescription
+             showAlert.toggle()
+         }
+    }
+    
+    func getProjects() async throws {
+        isLoadingProjects = true
+        try await projectsLogic.getProjects()
+        isLoadingProjects = false
     }
 }

@@ -30,7 +30,7 @@ struct ContentView: View {
                     }
                     .listStyle(.insetGrouped)
                     .refreshable {
-                        // Añadir lógica para recargar proyectos
+                        Task { try await vm.getProjects() }
                     }
                 } else {
                     ContentUnavailableView("Proyectos no disponibles",
@@ -74,9 +74,7 @@ struct ContentView: View {
             }
             .sheet(isPresented: $showAddProject) {
                 // Vista para añadir proyecto
-                Text("Nueva vista para crear proyecto")
-                    .presentationDetents([.medium])
-                    .presentationDragIndicator(.visible)
+                AddProjectView()
             }
         }
         .backgroundOverlay(vm.isUserLogged)
@@ -84,6 +82,15 @@ struct ContentView: View {
             LoginView()
             .opacity(vm.isUserLogged ? 0 : 1)
             .offset(y: vm.isUserLogged ? reduceMotion ? 0 : 500 : 0)
+        }
+        .overlay {
+            if vm.isLoadingProjects {
+                Color.black.opacity(0.18).ignoresSafeArea()
+                ProgressView("Actualizando proyectos...")
+                    .padding()
+                    .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 14))
+                    .accessibilityLabel("Actualizando proyectos")
+            }
         }
         .animation(.spring(duration: 0.5, bounce: 0.3), value: vm.isUserLogged)
         .onReceive(registration) { _ in

@@ -11,16 +11,21 @@ enum UserType: String, Codable {
     case admin, user, none
 }
 
-enum TaskState: String, Codable {
+enum TaskState: String, Codable, CaseIterable, Identifiable {
+    var id: Self { self }
+    
     case active
     case cancelled
     case completed
     case inactive
     case onHold
     case pending
+    case none
 }
 
-enum ProjectType: String, Codable {
+enum ProjectType: String, Codable, CaseIterable, Identifiable {
+    var id: Self { self }
+    
     case design
     case development
     case education
@@ -33,6 +38,7 @@ enum ProjectType: String, Codable {
     case research
     case support
     case testing
+    case none
 }
 
 enum PasswordStrength: String {

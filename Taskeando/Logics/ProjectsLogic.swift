@@ -15,12 +15,18 @@ final class ProjectsLogic {
     
     init(networkRepository: NetworkRepository = Repository()) {
         self.networkRepository = networkRepository
-        Task { await self.getProjects() }
+        Task { try await self.getProjects() }
     }
     
-    func getProjects() async {
+    func getProjects() async throws {
         do {
             self.projects = try await networkRepository.getProjects()
+        } catch {}
+    }
+    
+    func addProject(_ project: Project) async throws {
+        do {
+            try await networkRepository.createProject(project: project)
         } catch {}
     }
 }

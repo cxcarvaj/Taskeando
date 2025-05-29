@@ -38,6 +38,8 @@ protocol NetworkRepository: NetworkInteractor, Sendable {
     func createProject(project: Project) async throws(NetworkError)
     func getProjects() async throws(NetworkError) -> [Project]
     func getProject(id: UUID?) async throws(NetworkError) -> Project
+    
+    func sendMetrics<T>(_ metrics: T) async where T: Codable
 }
 
 extension NetworkRepository {
@@ -134,6 +136,16 @@ extension NetworkRepository {
     func getProject(id: UUID?) async throws(NetworkError) -> Project {
 //        try await getJSON(.get(.getProject(id: id)), type: Project.self)
         try await getJSON(.get(.getProjectJWT(id: id), authMethod: .bearer(tokenType: .tokenJWT)), type: Project.self)
+    }
+    
+    func sendMetrics<T>(_ metrics: T) async where T: Codable {
+        let request: URLRequest = await .post(url: .sendMetrics, body: metrics)
+        do {
+            try await getStatus(request, status: 201)
+        } catch {
+            let operation = NetworkOperations(request: request, status: 201)
+            await OperationsManager.shared.addOperation(operation)
+        }
     }
     
 }
