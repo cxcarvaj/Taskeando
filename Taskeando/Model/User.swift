@@ -8,14 +8,10 @@
 
 import Foundation
 
-struct User: Codable {
+struct User: Codable, Identifiable, Hashable {
+    var id: String { email }
+
     let email: String
-    let password: String
     let name: String
     let avatar: String?
-    let role: UserType
-}
-
-struct Token: Codable {
-    var token: String
 }

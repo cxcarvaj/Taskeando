@@ -67,21 +67,9 @@ struct AddProjectView: View {
                     }
                     
                     Section(header: Text("Detalles del proyecto").fontWeight(.semibold)) {
-                        Picker("Tipo de proyecto", selection: $projectVM.type) {
-                            ForEach(ProjectType.allCases) { type in
-                                Text(type.rawValue.capitalized)
-                                    .tag(type)
-                            }
-                        }
-                        .accessibilityLabel("Tipo de proyecto")
+                        ProjectPicker(projectType: $projectVM.type)
                         
-                        Picker("Estado actual", selection: $projectVM.state) {
-                            ForEach(TaskState.allCases) { state in
-                                Text(state.rawValue.capitalized)
-                                    .tag(state)
-                            }
-                        }
-                        .accessibilityLabel("Estado del proyecto")
+                        StatePicker(taskState: $projectVM.state)
                     }
                 }
                 // Loading overlay

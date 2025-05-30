@@ -16,6 +16,6 @@ final class AddProjectVM {
     var state: TaskState = .none
     
     func getProject() -> Project {
-        Project(id: nil, name: name, summary: summary, type: type, state: state)
+        Project(id: nil, name: name, summary: summary, type: type, state: state, users: [], tasks: [])
     }
 }

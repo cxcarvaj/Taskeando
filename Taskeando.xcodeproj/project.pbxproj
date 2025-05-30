@@ -17,6 +17,14 @@
 		FB01FE7D2DE2C267003B7FF1 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB01FE7C2DE2C267003B7FF1 /* Extensions.swift */; };
 		FB58CA0D2DE8BB21000915AA /* WithoutNetworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB58CA0C2DE8BB21000915AA /* WithoutNetworkView.swift */; };
 		FB58CA0F2DE8CA24000915AA /* NetworkOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB58CA0E2DE8CA24000915AA /* NetworkOperations.swift */; };
+		FB5F73822DE95ADB00AE958D /* ProjectPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5F73812DE95ADB00AE958D /* ProjectPicker.swift */; };
+		FB5F73842DE95B6900AE958D /* StatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5F73832DE95B6900AE958D /* StatePicker.swift */; };
+		FB5F73872DE95D7900AE958D /* UserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5F73862DE95D7900AE958D /* UserDTO.swift */; };
+		FB5F73892DE95F9B00AE958D /* ProjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5F73882DE95F9B00AE958D /* ProjectsView.swift */; };
+		FB5F738B2DE962D500AE958D /* ProjectDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5F738A2DE962D500AE958D /* ProjectDetailView.swift */; };
+		FB5F738D2DE9637900AE958D /* ProjectDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5F738C2DE9637900AE958D /* ProjectDetailVM.swift */; };
+		FB5F73902DE9648900AE958D /* TaskStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5F738F2DE9648900AE958D /* TaskStyle.swift */; };
+		FB5F73922DE974AC00AE958D /* ProjectsStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5F73912DE974AC00AE958D /* ProjectsStyle.swift */; };
 		FB62075D2DE8966B0012BAB4 /* AddProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB62075C2DE8966B0012BAB4 /* AddProjectView.swift */; };
 		FB62075F2DE898010012BAB4 /* AddProjectVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB62075E2DE898010012BAB4 /* AddProjectVM.swift */; };
 		FB7A70552DDF88A600BA34B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB7A70502DDF88A600BA34B8 /* Assets.xcassets */; };
@@ -50,6 +58,14 @@
 		FB4C30372DDBB58E00E6E14A /* Taskeando.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Taskeando.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB58CA0C2DE8BB21000915AA /* WithoutNetworkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithoutNetworkView.swift; sourceTree = "<group>"; };
 		FB58CA0E2DE8CA24000915AA /* NetworkOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkOperations.swift; sourceTree = "<group>"; };
+		FB5F73812DE95ADB00AE958D /* ProjectPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectPicker.swift; sourceTree = "<group>"; };
+		FB5F73832DE95B6900AE958D /* StatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatePicker.swift; sourceTree = "<group>"; };
+		FB5F73862DE95D7900AE958D /* UserDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDTO.swift; sourceTree = "<group>"; };
+		FB5F73882DE95F9B00AE958D /* ProjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsView.swift; sourceTree = "<group>"; };
+		FB5F738A2DE962D500AE958D /* ProjectDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailView.swift; sourceTree = "<group>"; };
+		FB5F738C2DE9637900AE958D /* ProjectDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailVM.swift; sourceTree = "<group>"; };
+		FB5F738F2DE9648900AE958D /* TaskStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskStyle.swift; sourceTree = "<group>"; };
+		FB5F73912DE974AC00AE958D /* ProjectsStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsStyle.swift; sourceTree = "<group>"; };
 		FB62075C2DE8966B0012BAB4 /* AddProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProjectView.swift; sourceTree = "<group>"; };
 		FB62075E2DE898010012BAB4 /* AddProjectVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProjectVM.swift; sourceTree = "<group>"; };
 		FB7A70502DDF88A600BA34B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -106,17 +122,38 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		FB5F73852DE95D5D00AE958D /* DTOs */ = {
+			isa = PBXGroup;
+			children = (
+				FB5F73862DE95D7900AE958D /* UserDTO.swift */,
+			);
+			path = DTOs;
+			sourceTree = "<group>";
+		};
+		FB5F738E2DE9647B00AE958D /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				FB5F73912DE974AC00AE958D /* ProjectsStyle.swift */,
+				FB5F738F2DE9648900AE958D /* TaskStyle.swift */,
+			);
+			path = Styles;
+			sourceTree = "<group>";
+		};
 		FB7A70542DDF88A600BA34B8 /* Taskeando */ = {
 			isa = PBXGroup;
 			children = (
 				FB7A707A2DE222E300BA34B8 /* Components */,
+				FB5F738E2DE9647B00AE958D /* Styles */,
 				FB7A70512DDF88A600BA34B8 /* ContentView.swift */,
+				FB5F738A2DE962D500AE958D /* ProjectDetailView.swift */,
 				FB7A70762DE0CC5C00BA34B8 /* LoginView.swift */,
 				FB01FE6B2DE253F0003B7FF1 /* SignUpView.swift */,
 				FB62075C2DE8966B0012BAB4 /* AddProjectView.swift */,
+				FB5F73882DE95F9B00AE958D /* ProjectsView.swift */,
 				FB7A70732DE0CAEB00BA34B8 /* ViewModel */,
 				FB7A706E2DE0CAA800BA34B8 /* Logics */,
 				FB7A70612DDF8A9300BA34B8 /* Model */,
+				FB5F73852DE95D5D00AE958D /* DTOs */,
 				FB7A70592DDF892500BA34B8 /* Interface */,
 				FB01FE792DE2C247003B7FF1 /* Extensions */,
 				FB7A70502DDF88A600BA34B8 /* Assets.xcassets */,
@@ -160,6 +197,7 @@
 		FB7A70732DE0CAEB00BA34B8 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				FB5F738C2DE9637900AE958D /* ProjectDetailVM.swift */,
 				FB62075E2DE898010012BAB4 /* AddProjectVM.swift */,
 				FB01FE772DE2C1BC003B7FF1 /* PasswordViewModel.swift */,
 				FB7A70742DE0CAF500BA34B8 /* TaskeandoVM.swift */,
@@ -178,6 +216,8 @@
 				FB7A70812DE2331100BA34B8 /* BackgroundOverlay.swift */,
 				FB01FE752DE29DCB003B7FF1 /* PasswordStrengthIndicator.swift */,
 				FB58CA0C2DE8BB21000915AA /* WithoutNetworkView.swift */,
+				FB5F73812DE95ADB00AE958D /* ProjectPicker.swift */,
+				FB5F73832DE95B6900AE958D /* StatePicker.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -258,9 +298,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB5F73892DE95F9B00AE958D /* ProjectsView.swift in Sources */,
 				FB58CA0F2DE8CA24000915AA /* NetworkOperations.swift in Sources */,
 				FB7A70572DDF88A600BA34B8 /* ContentView.swift in Sources */,
+				FB5F73902DE9648900AE958D /* TaskStyle.swift in Sources */,
 				FB01FE782DE2C1BC003B7FF1 /* PasswordViewModel.swift in Sources */,
+				FB5F73842DE95B6900AE958D /* StatePicker.swift in Sources */,
 				FB62075D2DE8966B0012BAB4 /* AddProjectView.swift in Sources */,
 				FB7A707C2DE222EB00BA34B8 /* ProjectRowView.swift in Sources */,
 				FB7A70752DE0CAF500BA34B8 /* TaskeandoVM.swift in Sources */,
@@ -272,18 +315,23 @@
 				FB01FE722DE28F5A003B7FF1 /* User.swift in Sources */,
 				FB01FE7D2DE2C267003B7FF1 /* Extensions.swift in Sources */,
 				FB01FE742DE29BCB003B7FF1 /* UsersLogic.swift in Sources */,
+				FB5F73822DE95ADB00AE958D /* ProjectPicker.swift in Sources */,
+				FB5F738B2DE962D500AE958D /* ProjectDetailView.swift in Sources */,
 				FB7A705B2DDF899E00BA34B8 /* URL.swift in Sources */,
 				FB7A706B2DE0B67A00BA34B8 /* Enums.swift in Sources */,
 				FB7A707E2DE2258E00BA34B8 /* LoginFormView.swift in Sources */,
 				FB7A70802DE22B1200BA34B8 /* LoadingButtonView.swift in Sources */,
 				FB62075F2DE898010012BAB4 /* AddProjectVM.swift in Sources */,
 				FB7A70822DE2331100BA34B8 /* BackgroundOverlay.swift in Sources */,
+				FB5F73922DE974AC00AE958D /* ProjectsStyle.swift in Sources */,
 				FB7A706D2DE0B6D300BA34B8 /* Project.swift in Sources */,
 				FB01FE702DE2614D003B7FF1 /* PasswordField.swift in Sources */,
 				FB01FE6C2DE253F0003B7FF1 /* SignUpView.swift in Sources */,
 				FB7A70772DE0CC5C00BA34B8 /* LoginView.swift in Sources */,
 				FB7A70702DE0CAB600BA34B8 /* ProjectsLogic.swift in Sources */,
+				FB5F738D2DE9637900AE958D /* ProjectDetailVM.swift in Sources */,
 				FB7A705D2DDF89B900BA34B8 /* Repository.swift in Sources */,
+				FB5F73872DE95D7900AE958D /* UserDTO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

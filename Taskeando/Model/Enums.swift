@@ -71,3 +71,12 @@ struct SIWABody: Codable {
     let name: String?
     let lastName: String?
 }
+
+enum TaskPriority: String, Codable, CaseIterable, Identifiable {
+    var id: Self { self }
+    
+    case urgent
+    case high
+    case medium
+    case low
+}

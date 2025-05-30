@@ -16,7 +16,7 @@ final class UsersLogic {
         self.networkRepository = networkRepository
     }
     
-    func createUser(_ user: User) async throws {
+    func createUser(_ user: UserDTO) async throws {
         try await networkRepository.createUser(user: user)
     }
     

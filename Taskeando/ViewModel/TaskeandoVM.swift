@@ -71,7 +71,7 @@ final class TaskeandoVM {
         }
     }
     
-    func createUser(_ user: User) async {
+    func createUser(_ user: UserDTO) async {
         do {
             isLoading.toggle()
             try await usersLogic.createUser(user)
@@ -133,6 +133,7 @@ final class TaskeandoVM {
         let request = SIWABody(name: credential.fullName?.givenName, lastName: credential.fullName?.familyName)
         try await usersLogic.loginWithSIWA(tokenData: token, siwaBody: request)
         AuthCredentialManager().saveCredentials(for: .SIWAToken(token: nil), credentials: credential.user)
+        try await projectsLogic.getProjects()
         isUserLogged = true
     }
     

@@ -14,8 +14,18 @@ struct Project: Codable, Identifiable, Hashable {
     let summary: String?
     let type: ProjectType
     let state: TaskState
+    let users: [User]
+    let tasks: [ProjectTask]
 }
 
-extension Project {
-    static let test = Project(id: UUID(), name: "Be Native", summary: "Proyecto de la app de Be Native", type: .development, state: .active)
+struct ProjectTask: Codable, Identifiable, Hashable {
+    let id: UUID?
+    let name: String
+    let summary: String
+    let dateInit: Date
+    let dateDeadline: Date?
+    let priority: TaskPriority
+    let state: TaskState
+    let daysRepeat: Int
+    let user: [User]
 }

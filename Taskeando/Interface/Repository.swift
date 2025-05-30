@@ -29,7 +29,7 @@ struct Repository: NetworkRepository {
 protocol NetworkRepository: NetworkInteractor, Sendable {
     var apiKey: String { get }
     var key: Data { get }
-    func createUser(user: User) async throws(NetworkError)
+    func createUser(user: UserDTO) async throws(NetworkError)
     func loginWithSIWA(tokenData: Data, siwaBody: SIWABody) async throws(NetworkError)
     func validateUser(token: String) async throws(NetworkError)
     func loginUser(user: String, pass: String) async throws(NetworkError)
@@ -54,7 +54,7 @@ extension NetworkRepository {
         return Data(key)
     }
     
-    func createUser(user: User) async throws(NetworkError) {
+    func createUser(user: UserDTO) async throws(NetworkError) {
         let request: URLRequest = await .post(url: .createUser,
                                               body: user,
                                               authMethod: .apiKey(key: apiKey,

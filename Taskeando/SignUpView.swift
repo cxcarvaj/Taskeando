@@ -248,7 +248,7 @@ struct SignUpView: View {
         hideKeyboard()
         Task {
             await vm.createUser(
-                User(email: email,
+                UserDTO(email: email,
                      password: password,
                      name: fullName,
                      avatar: nil,
