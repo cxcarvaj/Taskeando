@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct ProjectRowView: View {
-    let project: Project
+    @Binding var project: Project
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
-        NavigationLink(destination: ProjectDetailView(project: project)) {
+        NavigationLink(destination: ProjectDetailView(project: $project)) {
             HStack(spacing: 15) {
 //                Circle()
 //                    .fill(Color.blue)
@@ -74,5 +74,6 @@ struct ProjectRowView: View {
 }
 
 #Preview {
-    ProjectRowView(project: .test)
+    @Previewable @State var project: Project = .test
+    ProjectRowView(project: $project)
 }

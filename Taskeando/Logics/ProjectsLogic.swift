@@ -26,7 +26,16 @@ final class ProjectsLogic {
     
     func addProject(_ project: Project) async throws {
         do {
-            try await networkRepository.createProject(project: project)
+            try await networkRepository.createProject(project)
         } catch {}
+    }
+    
+    func addProject(task: ProjectTaskDTO) async throws {
+        do {
+            try await networkRepository.createTask(task)
+            try await getProjects()
+        } catch {
+            print(error)
+        }
     }
 }

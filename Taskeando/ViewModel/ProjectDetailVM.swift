@@ -11,4 +11,12 @@ import Foundation
 final class ProjectDetailVM {
     var type: ProjectType = .none
     var state: TaskState = .none
+    
+    func setProjectType(_ type: ProjectType) {
+        self.type = type
+    }
+    
+    func setTaskState(_ state: TaskState) {
+        self.state = state
+    }
 }

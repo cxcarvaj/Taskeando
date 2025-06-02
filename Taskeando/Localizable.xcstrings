@@ -1,0 +1,836 @@
+{
+  "sourceLanguage" : "es-419",
+  "strings" : {
+    "¿No tienes cuenta?" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Don't have an account?"
+          }
+        }
+      }
+    },
+    "¿Olvidaste tu contraseña?" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forgot your password?"
+          }
+        }
+      }
+    },
+    "¿Tiene fecha límite?" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Do you have a deadline?"
+          }
+        }
+      }
+    },
+    "¿Ya tienes cuenta? Iniciar sesión" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Already have an account? Sign in"
+          }
+        }
+      }
+    },
+    "%lld tareas" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld tasks"
+          }
+        }
+      }
+    },
+    "%lld Users" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld Users"
+          }
+        }
+      }
+    },
+    "Actualizando proyectos" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Updating projects"
+          }
+        }
+      }
+    },
+    "Actualizando proyectos..." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Updating projects…"
+          }
+        }
+      }
+    },
+    "Agregar tarea" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add task"
+          }
+        }
+      }
+    },
+    "Al crear una cuenta, aceptas nuestros [Términos de Servicio](https://taskeando.ejemplo.com/terminos) y [Política de Privacidad](https://taskeando.ejemplo.com/privacidad)." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "By creating an account, you agree to our [Terms of Service](https://taskeando.example.com/terms) and [Privacy Policy](https://taskeando.example.com/privacy)."
+          }
+        }
+      }
+    },
+    "Aún no se han agregado tareas a este proyecto." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No tasks have been added to this project yet."
+          }
+        }
+      }
+    },
+    "Aviso" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Warning"
+          }
+        }
+      }
+    },
+    "Cada %lld días" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Every %lld days"
+          }
+        }
+      }
+    },
+    "Campo obligatorio" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Required field"
+          }
+        }
+      }
+    },
+    "Cancelar" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        }
+      }
+    },
+    "Cerrar Sesión" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Log Out"
+          }
+        }
+      }
+    },
+    "Configuración" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configuration"
+          }
+        }
+      }
+    },
+    "Creando proyecto" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Creating project"
+          }
+        }
+      }
+    },
+    "Creando proyecto..." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Creating project…"
+          }
+        }
+      }
+    },
+    "Crear Cuenta" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create Account"
+          }
+        }
+      }
+    },
+    "Describe brevemente el proyecto" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Briefly describe the project"
+          }
+        }
+      }
+    },
+    "Descripción breve" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Brief description"
+          }
+        }
+      }
+    },
+    "Descripción de la tarea" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Task description"
+          }
+        }
+      }
+    },
+    "Detalles" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Details"
+          }
+        }
+      }
+    },
+    "Detalles del proyecto" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Project details"
+          }
+        }
+      }
+    },
+    "El nombre es obligatorio" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name is required"
+          }
+        }
+      }
+    },
+    "El resumen es obligatorio" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The summary is mandatory"
+          }
+        }
+      }
+    },
+    "Eliminar" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete"
+          }
+        }
+      }
+    },
+    "Escribe el nombre" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Write the name"
+          }
+        }
+      }
+    },
+    "Estado" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Status"
+          }
+        }
+      }
+    },
+    "Estado actual" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Current status"
+          }
+        }
+      }
+    },
+    "Estado de la tarea" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Task status"
+          }
+        }
+      }
+    },
+    "Estado del proyecto: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Project status: %@"
+          }
+        }
+      }
+    },
+    "Estado: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Status: %@"
+          }
+        }
+      }
+    },
+    "Favorito" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favorite"
+          }
+        }
+      }
+    },
+    "Fecha de inicio" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start date"
+          }
+        }
+      }
+    },
+    "Fecha límite" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deadline"
+          }
+        }
+      }
+    },
+    "Fechas" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dates"
+          }
+        }
+      }
+    },
+    "Gestiona tus proyectos de forma eficiente" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Manage your projects efficiently"
+          }
+        }
+      }
+    },
+    "Guardar" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save"
+          }
+        }
+      }
+    },
+    "Guardar tarea" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save task"
+          }
+        }
+      }
+    },
+    "Información básica" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Basic information"
+          }
+        }
+      }
+    },
+    "Información del proyecto" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Project information"
+          }
+        }
+      }
+    },
+    "Inicio: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start: %@"
+          }
+        }
+      }
+    },
+    "Intentar de nuevo" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Try again"
+          }
+        }
+      }
+    },
+    "Introduce el nombre de la tarea" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter the name of the task"
+          }
+        }
+      }
+    },
+    "Introduce una breve descripción para la tarea" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter a brief description for the task"
+          }
+        }
+      }
+    },
+    "La contraseña debe contener al menos 8 caracteres, incluyendo mayúsculas, minúsculas, números y símbolos." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The password must contain at least 8 characters, including uppercase, lowercase, numbers and symbols."
+          }
+        }
+      }
+    },
+    "Límite: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Limit: %@"
+          }
+        }
+      }
+    },
+    "Mi Perfil" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "My Profile"
+          }
+        }
+      }
+    },
+    "No hay proyectos en este momento. Crea nuevos proyectos tocando en +." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There are no projects at the moment. Create new projects by tapping +."
+          }
+        }
+      }
+    },
+    "No hay tareas" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There are no tasks"
+          }
+        }
+      }
+    },
+    "No se ha detectado una conexión a internet. TASKeando requiere acceso a la red para funcionar correctamente." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No internet connection detected. TASKeando requires network access to function properly."
+          }
+        }
+      }
+    },
+    "No se repite" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "It is not repeated"
+          }
+        }
+      }
+    },
+    "Nombre de la tarea" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Task name"
+          }
+        }
+      }
+    },
+    "Nombre del proyecto" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Project name"
+          }
+        }
+      }
+    },
+    "Nueva tarea" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New task"
+          }
+        }
+      }
+    },
+    "Nuevo Proyecto" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New Project"
+          }
+        }
+      }
+    },
+    "O continúa con" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Or continue with"
+          }
+        }
+      }
+    },
+    "o crea una cuenta manualmente" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "or create an account manually"
+          }
+        }
+      }
+    },
+    "OK" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        }
+      }
+    },
+    "Prioridad" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Priority"
+          }
+        }
+      }
+    },
+    "Prioridad de la tarea" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Task priority"
+          }
+        }
+      }
+    },
+    "Prioridad: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Priority: %@"
+          }
+        }
+      }
+    },
+    "Proyectos no disponibles" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Projects not available"
+          }
+        }
+      }
+    },
+    "Recuperar contraseña" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recover password"
+          }
+        }
+      }
+    },
+    "Regístrate" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign up"
+          }
+        }
+      }
+    },
+    "Regístrate con Apple para mayor rapidez y seguridad." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign up with Apple for speed and security."
+          }
+        }
+      }
+    },
+    "Reintentando..." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retrying..."
+          }
+        }
+      }
+    },
+    "Repetición" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Repetition"
+          }
+        }
+      }
+    },
+    "Repetir cada %lld días" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Repeat every %lld days"
+          }
+        }
+      }
+    },
+    "Repetir cada día" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Repeat every day"
+          }
+        }
+      }
+    },
+    "Repite cada %lld días" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Repeat every %lld days"
+          }
+        }
+      }
+    },
+    "Resumen" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Summary"
+          }
+        }
+      }
+    },
+    "Resumen del proyecto" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Project Summary"
+          }
+        }
+      }
+    },
+    "Seguridad de la contraseña: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Password strength: %@"
+          }
+        }
+      }
+    },
+    "Sin conexión a Internet" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Internet connection"
+          }
+        }
+      }
+    },
+    "Tareas" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tasks"
+          }
+        }
+      }
+    },
+    "Taskeando" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Taskeando"
+          }
+        }
+      }
+    },
+    "TASKeando" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TASKeando"
+          }
+        }
+      }
+    },
+    "Tipo de proyecto" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Type of project"
+          }
+        }
+      }
+    },
+    "Tipo de proyecto: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Type of project: %@"
+          }
+        }
+      }
+    },
+    "Únete a TASKeando y gestiona tus proyectos" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Join TASKeando and manage your projects"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

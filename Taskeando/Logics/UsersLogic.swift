@@ -17,7 +17,7 @@ final class UsersLogic {
     }
     
     func createUser(_ user: UserDTO) async throws {
-        try await networkRepository.createUser(user: user)
+        try await networkRepository.createUser( user)
     }
     
     func validateUser(token: String) async throws {

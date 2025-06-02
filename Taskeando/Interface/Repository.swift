@@ -18,26 +18,40 @@ struct Repository: NetworkRepository {
     var decoder: JSONDecoder {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        decoder.dateDecodingStrategy = .formatted(formatter)
+//        let formatter = DateFormatter()
+//        formatter.dateFormat = "yyyy-MM-dd"
+//        formatter.locale = Locale(identifier: "en_US_POSIX")
+//        decoder.dateDecodingStrategy = .formatted(formatter)
+        decoder.dateDecodingStrategy = .iso8601
         return decoder
+    }
+    
+    var encoder: JSONEncoder {
+        let encoder = JSONEncoder()
+        encoder.keyEncodingStrategy = .convertToSnakeCase
+        encoder.dateEncodingStrategy = .iso8601
+        return encoder
     }
 }
 
 protocol NetworkRepository: NetworkInteractor, Sendable {
     var apiKey: String { get }
     var key: Data { get }
-    func createUser(user: UserDTO) async throws(NetworkError)
+    func createUser(_ user: UserDTO) async throws(NetworkError)
     func loginWithSIWA(tokenData: Data, siwaBody: SIWABody) async throws(NetworkError)
     func validateUser(token: String) async throws(NetworkError)
     func loginUser(user: String, pass: String) async throws(NetworkError)
     func loginUserJWT(user: String, pass: String) async throws
     func refreshJWT() async throws(NetworkError)
-    func createProject(project: Project) async throws(NetworkError)
+    
+    func createProject(_ project: Project) async throws(NetworkError)
     func getProjects() async throws(NetworkError) -> [Project]
     func getProject(id: UUID?) async throws(NetworkError) -> Project
+    
+    func getProjectTasks(project: Project) async throws(NetworkError) -> [ProjectTask]
+    func createTask(_ task: ProjectTaskDTO) async throws(NetworkError)
+    func updateTask(_ task: ProjectTaskDTO) async throws(NetworkError)
+    func deleteTask(_ task: ProjectTaskDTO) async throws(NetworkError)
     
     func sendMetrics<T>(_ metrics: T) async where T: Codable
 }
@@ -54,7 +68,7 @@ extension NetworkRepository {
         return Data(key)
     }
     
-    func createUser(user: UserDTO) async throws(NetworkError) {
+    func createUser(_ user: UserDTO) async throws(NetworkError) {
         let request: URLRequest = await .post(url: .createUser,
                                               body: user,
                                               authMethod: .apiKey(key: apiKey,
@@ -123,7 +137,7 @@ extension NetworkRepository {
         )
     }
     
-    func createProject(project: Project) async throws(NetworkError) {
+    func createProject(_ project: Project) async throws(NetworkError) {
 //        try await getStatus(.post(url: .project, body: project), status: 202)
         try await getStatus(.post(url: .projectJWT, body: project, authMethod: .bearer(tokenType: .tokenJWT)), status: 202)
     }
@@ -138,8 +152,27 @@ extension NetworkRepository {
         try await getJSON(.get(.getProjectJWT(id: id), authMethod: .bearer(tokenType: .tokenJWT)), type: Project.self)
     }
     
+    func createTask(_ task: ProjectTaskDTO) async throws(NetworkError) {
+        try await getStatus(.post(url: .createTask, body: task, encoder: encoder, authMethod: .bearer(tokenType: .tokenJWT)), status: 202)
+    }
+    
+    func getProjectTasks(project: Project) async throws(NetworkError) -> [ProjectTask] {
+        
+        try await getJSON(.get(.getProjectTasks(id: project.id), authMethod: .bearer(tokenType: .tokenJWT)), type: [ProjectTaskDTO].self).map(\.toTask)
+    }
+    
+    func updateTask(_ task: ProjectTaskDTO) async throws(NetworkError) {
+
+        try await getStatus(.post(url: .putDeleteTask(id: task.id), body: task, encoder: encoder, method: .put, authMethod: .bearer(tokenType: .tokenJWT)), status: 202)
+    }
+    
+    func deleteTask(_ task: ProjectTaskDTO) async throws(NetworkError) {
+        
+        try await getStatus(.post(url: .putDeleteTask(id: task.id), body: task, encoder: encoder, method: .delete, authMethod: .bearer(tokenType: .tokenJWT)), status: 204)
+    }
+    
     func sendMetrics<T>(_ metrics: T) async where T: Codable {
-        let request: URLRequest = await .post(url: .sendMetrics, body: metrics)
+        let request: URLRequest = await .post(url: .sendMetrics, body: metrics, encoder: encoder)
         do {
             try await getStatus(request, status: 201)
         } catch {

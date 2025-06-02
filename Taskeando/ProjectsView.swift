@@ -12,12 +12,13 @@ struct ProjectsView: View {
     @State private var showAddProject: Bool = false
 
     var body: some View {
+        @Bindable var vm = vm
         NavigationStack {
             VStack(spacing: 0) {
                 if vm.projectsLogic.projects.count > 0 {
                     List {
-                        ForEach(vm.projectsLogic.projects) { project in
-                            ProjectRowView(project: project)
+                        ForEach($vm.projectsLogic.projects) { $project in
+                            ProjectRowView(project: $project)
                         }
                     }
                     .listStyle(.plain)

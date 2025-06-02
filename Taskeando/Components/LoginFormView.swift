@@ -109,4 +109,5 @@ struct LoginForm: View {
               showForgotPassword: $showForgotPassword,
               onLogin: {}
     )
+    .environment(TaskeandoVM(networkRepository: RepositoryTest()))
 }

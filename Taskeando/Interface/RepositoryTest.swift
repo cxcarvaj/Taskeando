@@ -32,6 +32,5 @@ extension ProjectTask {
                                   dateDeadline: .now.addingTimeInterval(48 * 60 * 60),
                                   priority: .medium,
                                   state: .active,
-                                  daysRepeat: 0,
-                                  user: [.test])
+                                  daysRepeat: 0)
 }

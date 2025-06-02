@@ -27,5 +27,4 @@ struct ProjectTask: Codable, Identifiable, Hashable {
     let priority: TaskPriority
     let state: TaskState
     let daysRepeat: Int
-    let user: [User]
 }

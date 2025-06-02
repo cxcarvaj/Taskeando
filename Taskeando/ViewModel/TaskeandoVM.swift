@@ -19,7 +19,7 @@ enum SIWAState {
 
 @Observable @MainActor
 final class TaskeandoVM {
-    let projectsLogic: ProjectsLogic
+    var projectsLogic: ProjectsLogic
     let usersLogic: UsersLogic
     
     var isUserLogged = true
@@ -145,10 +145,21 @@ final class TaskeandoVM {
     func addProject(_ project: Project) async throws {
          do {
              try await projectsLogic.addProject(project)
+             try await projectsLogic.getProjects()
          } catch {
              alertMessage = error.localizedDescription
              showAlert.toggle()
          }
+    }
+    
+    func addProject(task: ProjectTaskDTO) async {
+        do {
+            try await projectsLogic.addProject(task: task)
+            try await projectsLogic.getProjects()
+        } catch {
+            alertMessage = error.localizedDescription
+            showAlert.toggle()
+        }
     }
     
     func getProjects() async throws {

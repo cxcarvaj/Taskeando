@@ -18,6 +18,7 @@ extension URL {
     static let validateUser = apiURL.appendingPathComponent("validateUser")
     static let project = apiURL.appendingPathComponent("project")
     static let refreshJWT = apiURL.appendingPathComponent("refreshJWT")
+    
     static func getProject(id: UUID?) -> URL {
         project.appending(path: id?.uuidString ?? "")
     }
@@ -26,8 +27,16 @@ extension URL {
         projectJWT.appending(path: id?.uuidString ?? "")
     }
     
-    static let sendMetrics = apiURL.appendingPathComponent("metrics")
-
+    static let createTask = apiURL.appendingPathComponent("task")
+    
+    static func getProjectTasks(id: UUID?) -> URL {
+        projectJWT.appending(path: id?.uuidString ?? "").appending(path: "tasks")
+    }
+    static func putDeleteTask(id: UUID?) -> URL {
+        createTask.appending(path: id?.uuidString ?? "").appending(path: "tasks")
+    }
+    
+    static let sendMetrics = apiURL.appendingPathComponent("sendMetrics")
 
 }
 

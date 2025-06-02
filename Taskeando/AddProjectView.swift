@@ -97,7 +97,6 @@ struct AddProjectView: View {
                         Task {
                             isLoading = true
                             try await vm.addProject(projectVM.getProject())
-                            try await vm.getProjects()
                             isLoading = false
                             dismiss()
                         }

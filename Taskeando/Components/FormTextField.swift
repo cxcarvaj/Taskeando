@@ -40,3 +40,15 @@ struct FormTextField: View {
         }
     }
 }
+
+#Preview {
+    @Previewable @State var text = "cxcarvaj@gmail.com"
+    
+    FormTextField(title: "Email",
+                  placeholder: "Escribe tu correo",
+                  icon: "envelope.fill",
+                  text: $text,
+                  contentType: .emailAddress,
+                  keyboardType: .emailAddress,
+                  capitalization: .never)
+}
