@@ -41,6 +41,9 @@
         }
       }
     },
+    "%lld porciento completado" : {
+
+    },
     "%lld tareas" : {
       "localizations" : {
         "en" : {
@@ -161,6 +164,9 @@
         }
       }
     },
+    "Completar tarea" : {
+
+    },
     "Configuración" : {
       "localizations" : {
         "en" : {
@@ -231,6 +237,9 @@
         }
       }
     },
+    "Descripción: %@" : {
+
+    },
     "Detalles" : {
       "localizations" : {
         "en" : {
@@ -250,6 +259,9 @@
           }
         }
       }
+    },
+    "Editar tarea" : {
+
     },
     "El nombre es obligatorio" : {
       "localizations" : {
@@ -370,6 +382,9 @@
           }
         }
       }
+    },
+    "Fecha límite: %@" : {
+
     },
     "Fechas" : {
       "localizations" : {
@@ -611,6 +626,9 @@
         }
       }
     },
+    "Pendiente" : {
+
+    },
     "Prioridad" : {
       "localizations" : {
         "en" : {
@@ -650,6 +668,9 @@
           }
         }
       }
+    },
+    "Reabrir tarea" : {
+
     },
     "Recuperar contraseña" : {
       "localizations" : {
@@ -771,6 +792,9 @@
         }
       }
     },
+    "Sin descripción" : {
+
+    },
     "Tareas" : {
       "localizations" : {
         "en" : {
@@ -830,6 +854,9 @@
           }
         }
       }
+    },
+    "Vencida" : {
+
     }
   },
   "version" : "1.0"

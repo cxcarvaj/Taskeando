@@ -32,6 +32,7 @@ extension TaskeandoVM {
 
 extension Notification.Name {
     static let userValidated = Notification.Name("userValidated")
+    static let viewTask = Notification.Name("viewTask")
 }
 
 extension ProjectType {

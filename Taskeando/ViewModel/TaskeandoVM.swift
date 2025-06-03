@@ -45,12 +45,11 @@ final class TaskeandoVM {
         self.projectsLogic = ProjectsLogic(networkRepository: networkRepository)
         self.usersLogic = UsersLogic(networkRepository: networkRepository)
         Task {
-//            self.isUserLogged = SecKeyStore.shared.readValue(withLabel: GlobalIDs.tokenID.rawValue) != nil
-//            self.isUserLogged = SecKeyStore.shared.readValue(withLabel: GlobalIDs.tokedJWT.rawValue) != nil
-            if let _ = SecKeyStore.shared.readValue(withLabel: GlobalIDs.tokenJWT.rawValue) {
+            do {
                 try await usersLogic.refreshJWT()
-            } else {
-                isUserLogged = false
+            } catch {
+                print("Error al refrescar el JWT: \(error)")
+                logout()
             }
             
             let provider = ASAuthorizationAppleIDProvider()
@@ -166,5 +165,14 @@ final class TaskeandoVM {
         isLoadingProjects = true
         try await projectsLogic.getProjects()
         isLoadingProjects = false
+    }
+    
+    func getProjectFromTask(task: ProjectTask) -> Project? {
+        projectsLogic.getProjectFromTask(task: task)
+    }
+        
+    func getProjectTask(notification: Notification) -> (project: Project, task: ProjectTask)? {
+        guard let (project, task) = projectsLogic.getProjectTask(notification: notification) else { return nil }
+        return (project, task)
     }
 }

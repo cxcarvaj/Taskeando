@@ -39,7 +39,10 @@ struct TaskSectionView: View {
             } else {
                 VStack(spacing: 16) {
                     ForEach(tasks) { task in
-                        TaskGroupBoxView(task: task)
+                        NavigationLink(destination: TaskDetailView(task: task)) {
+                            TaskGroupBoxView(task: task)
+                        }
+                        .buttonStyle(PlainButtonStyle())
                     }
                 }
             }

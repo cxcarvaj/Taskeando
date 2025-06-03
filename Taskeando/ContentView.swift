@@ -16,6 +16,13 @@ struct ContentView: View {
     
     private let registration = NotificationCenter.default
         .publisher(for: .userValidated)
+        .receive(on: DispatchQueue.main)
+    
+    private let viewTask = NotificationCenter.default
+        .publisher(for: .viewTask)
+        .receive(on: DispatchQueue.main)
+    
+    @State private var projectTask: ProjectWithTask?
     
     var body: some View {
         @Bindable var vm = vm
@@ -40,6 +47,21 @@ struct ContentView: View {
             .onReceive(registration) { _ in
                 vm.alertMessage = "User validated. You can now login to your account."
                 vm.showAlert.toggle()
+            }
+            .onReceive(viewTask) { notification in
+                print("Recibo la notificación")
+                Task { @MainActor in
+                    print("Estoy dentro del task")
+                    if let pt = vm.getProjectTask(notification: notification) {
+                        print("He recuperado los valores")
+                        projectTask = ProjectWithTask(project: pt.project, task: pt.task)
+                    } else {
+                        projectTask = nil
+                    }
+                }
+            }
+            .sheet(item: $projectTask) { projectTask in
+                TaskDetailView(task: projectTask.task)
             }
             .alert("Taskeando",
                    isPresented: $vm.showAlert) {} message: {

@@ -7,9 +7,11 @@
 
 import SwiftUI
 import SMP25Kit
+import UserNotifications
 
 @main
 struct TaskeandoApp: App {
+    @UIApplicationDelegateAdaptor private var appDelegate: AppDelegate
     @Environment(\.accessibilityReduceMotion) var motion
     @State private var vm = TaskeandoVM()
     @State private var nwMonitor = NetworkMonitor()
@@ -18,6 +20,17 @@ struct TaskeandoApp: App {
         WindowGroup {
             ContentView()
                 .environment(vm)
+                .task {
+                    do {
+                        if try await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
+                            print("Notificaciones aceptadas")
+                        } else {
+                            print("Ha dicho que no... uuuuuyyyy... qué mal rollito...")
+                        }
+                    } catch {
+                        print("Error en los permisos de las notificaciones")
+                    }
+                }
                 .onOpenURL { url in
                     print(url)
                     guard url.path == "/validateEmail",

@@ -1,3 +1,12 @@
+//
+//  StateChip.swift
+//  Taskeando
+//
+//  Created by Carlos Xavier Carvajal Villegas on 2/6/25.
+//
+
+import SwiftUI
+
 struct StateChip: View {
     let state: TaskState
     
@@ -29,4 +38,8 @@ struct StateChip: View {
             return .orange
         }
     }
+}
+
+#Preview {
+    StateChip(state: .active)
 }

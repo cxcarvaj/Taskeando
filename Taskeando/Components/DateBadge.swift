@@ -1,3 +1,12 @@
+//
+//  DateBadge.swift
+//  Taskeando
+//
+//  Created by Carlos Xavier Carvajal Villegas on 2/6/25.
+//
+
+import SwiftUI
+
 struct DateBadge: View {
     let date: Date
     
@@ -45,4 +54,8 @@ struct DateBadge: View {
         formatter.dateStyle = .long
         return formatter.string(from: date)
     }
+}
+
+#Preview {
+    DateBadge(date: .now)
 }

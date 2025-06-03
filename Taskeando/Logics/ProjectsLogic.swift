@@ -38,4 +38,18 @@ final class ProjectsLogic {
             print(error)
         }
     }
+    
+    func getProjectFromTask(task: ProjectTask) -> Project? {
+        projects.first { $0.tasks.contains(where: { $0.id == task.id }) }
+    }
+    
+    func getProjectTask(notification: Notification) -> (project: Project, task: ProjectTask)? {
+        guard let userinfo = notification.userInfo as? [String: UUID],
+              let projectID = userinfo["projectID"],
+              let taskID = userinfo["taskID"],
+              let project = projects.first(where: { $0.id == projectID }),
+              let task = project.tasks.first(where: { $0.id == taskID })
+        else { return nil }
+        return (project, task)
+    }
 }

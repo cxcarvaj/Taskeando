@@ -1,8 +1,16 @@
+//
+//  AppDelegate.swift
+//  Taskeando
+//
+//  Created by Carlos Xavier Carvajal Villegas on 2/6/25.
+//
+
+
 import SwiftUI
 import UserNotifications
 
 final class AppDelegate: NSObject, UIApplicationDelegate {
-    let notificationsDelegate = NotificationsDelegate()Add commentMore actions
+    let notificationsDelegate = NotificationsDelegate()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         UNUserNotificationCenter.current().delegate = notificationsDelegate
