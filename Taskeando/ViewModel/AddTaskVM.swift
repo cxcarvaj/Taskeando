@@ -23,13 +23,14 @@ final class AddTaskVM {
     func getTask(projectID: UUID?) -> ProjectTaskDTO {
         let deadlineDate: Date? = includeDeadline ? dateDeadline : nil
         let taskID = UUID()
-        Task {
-            do {
-                try await createNotification(deadline: deadlineDate, projectID: projectID, taskID: taskID)
-            } catch {
-                print("Error en la programación de la tarea.")
-            }
-        }
+        // Se comenta esto para poder hacer las notificaciones del lado del servidor.
+//        Task {
+//            do {
+//                try await createNotification(deadline: deadlineDate, projectID: projectID, taskID: taskID)
+//            } catch {
+//                print("Error en la programación de la tarea.")
+//            }
+//        }
         
         return ProjectTaskDTO(
             id: taskID,

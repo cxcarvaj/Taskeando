@@ -6,7 +6,7 @@
 //
 
 
-import Foundation
+import SwiftUI
 import SMP25Kit
 
 struct Repository: NetworkRepository {
@@ -43,6 +43,7 @@ protocol NetworkRepository: NetworkInteractor, Sendable {
     func loginUser(user: String, pass: String) async throws(NetworkError)
     func loginUserJWT(user: String, pass: String) async throws
     func refreshJWT() async throws(NetworkError)
+    func sendAPNSToken(token: String) async throws(NetworkError)
     
     func createProject(_ project: Project) async throws(NetworkError)
     func getProjects() async throws(NetworkError) -> [Project]
@@ -106,12 +107,14 @@ extension NetworkRepository {
         let response = try await getJSON(request, type: Token.self)
         let jwt = response.token
 
-
-        let _ = try AuthCredentialManager().validateAndStoreJWT(
+        if try AuthCredentialManager().validateAndStoreJWT(
             jwt: jwt,
             issuer: "TaskeandoAPI",
-            key: key
-        )
+            key: key) {
+            await UIApplication.shared.registerForRemoteNotifications()
+        } else {
+            throw .security("Error en la validación del JWT")
+        }
     }
     
     func loginWithSIWA(tokenData: Data, siwaBody: SIWABody) async throws(NetworkError) {
@@ -121,11 +124,14 @@ extension NetworkRepository {
         let request: URLRequest = await .post(url: .loginSIWA, body: siwaBody, authMethod: .SIWAToken(token: tokenString))
         
         let jwtToken = try await getJSON(request, type: Token.self).token
-        let _ = try AuthCredentialManager().validateAndStoreJWT(
+        if try AuthCredentialManager().validateAndStoreJWT(
             jwt: jwtToken,
             issuer: "TaskeandoAPI",
-            key: key
-        )
+            key: key) {
+            await UIApplication.shared.registerForRemoteNotifications()
+        } else {
+            throw .security("Error en la validación del JWT")
+        }
     }
     
     func refreshJWT() async throws(NetworkError) {
@@ -135,6 +141,11 @@ extension NetworkRepository {
             issuer: "TaskeandoAPI",
             key: key
         )
+    }
+    
+    func sendAPNSToken(token: String) async throws(NetworkError) {
+        print("Enviando token APNS")
+        try await getStatus(.post(url: .sendToken, body: Token(token: token), authMethod: .bearer(tokenType: .tokenJWT)), status: 202)
     }
     
     func createProject(_ project: Project) async throws(NetworkError) {

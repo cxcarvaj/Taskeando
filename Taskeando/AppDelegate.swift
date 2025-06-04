@@ -11,6 +11,7 @@ import UserNotifications
 
 final class AppDelegate: NSObject, UIApplicationDelegate {
     let notificationsDelegate = NotificationsDelegate()
+    let networkRepository = Repository()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         UNUserNotificationCenter.current().delegate = notificationsDelegate
@@ -19,7 +20,20 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        
+        Task {
+            do {
+                let tokenBytes = deviceToken.map { byte in
+                    String(format: "%02.2hhx", byte)
+                }
+                try await networkRepository.sendAPNSToken(token: tokenBytes.joined())
+            } catch {
+                print("Error enviando el token al server")
+            }
+        }
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: any Error) {
+        print(error)
     }
 }
 
@@ -35,5 +49,9 @@ final class NotificationsDelegate: NSObject, UNUserNotificationCenterDelegate {
             NotificationCenter.default.post(name: .viewTask, object: nil, userInfo: ["projectID": idProject, "taskID" : idTask])
         }
         completionHandler()
+    }
+    // Esto es para gestionar las notificaciones cuando mi usuario tenga la app abierta, por eso debo generar la tabla DeviceUserTokens.
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification) async -> UNNotificationPresentationOptions {
+            .banner
     }
 }

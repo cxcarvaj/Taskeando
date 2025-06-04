@@ -41,9 +41,6 @@
         }
       }
     },
-    "%lld porciento completado" : {
-
-    },
     "%lld tareas" : {
       "localizations" : {
         "en" : {

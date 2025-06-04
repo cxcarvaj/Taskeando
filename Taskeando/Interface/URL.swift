@@ -18,6 +18,7 @@ extension URL {
     static let validateUser = apiURL.appendingPathComponent("validateUser")
     static let project = apiURL.appendingPathComponent("project")
     static let refreshJWT = apiURL.appendingPathComponent("refreshJWT")
+    static let sendToken = apiURL.appendingPathComponent("deviceAPNSToken")
     
     static func getProject(id: UUID?) -> URL {
         project.appending(path: id?.uuidString ?? "")

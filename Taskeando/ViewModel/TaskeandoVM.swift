@@ -139,6 +139,7 @@ final class TaskeandoVM {
     func logout() {
         Task { await AuthMiddlewareManager.shared.clearAllCredentials() }
         isUserLogged = false
+        //Aqui podriamos tambien llamar un endpoint para eliminar el token del device asi, si otra persona hace loggin las notificaciones que lleguen serian para ese usuario y no para el anterior
     }
     
     func addProject(_ project: Project) async throws {
